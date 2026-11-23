@@ -1,122 +1,24 @@
 import 'package:flutter/material.dart';
+import 'models/subasta.dart';
+import 'pages/detalle_page.dart';
+import 'pages/inicio_page.dart';
+import 'pages/listas_page.dart';
+import 'pages/login_page.dart';
+import 'pages/publicar_page.dart';
 
-void main() {
-  runApp(const MyApp());
+void main()=>runApp(const SubastaSolidariaApp());
+
+class SubastaSolidariaApp extends StatelessWidget {
+ const SubastaSolidariaApp({super.key});
+ static const Color vino=Color(0xFF8F1738);
+ @override Widget build(BuildContext context){final scheme=ColorScheme.fromSeed(seedColor:vino,brightness:Brightness.light);return MaterialApp(title:'Subasta Solidaria',debugShowCheckedModeBanner:false,theme:ThemeData(useMaterial3:true,colorScheme:scheme,scaffoldBackgroundColor:const Color(0xFFFAF8F7),appBarTheme:const AppBarTheme(centerTitle:false),cardTheme:CardThemeData(elevation:1,color:Colors.white,shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(18))),inputDecorationTheme:InputDecorationTheme(filled:true,fillColor:Colors.white,border:OutlineInputBorder(borderRadius:BorderRadius.circular(14),borderSide:BorderSide.none),enabledBorder:OutlineInputBorder(borderRadius:BorderRadius.circular(14),borderSide:const BorderSide(color:Color(0xFFE7DFDC))),focusedBorder:OutlineInputBorder(borderRadius:BorderRadius.circular(14),borderSide:const BorderSide(color:vino,width:1.5))),elevatedButtonTheme:ElevatedButtonThemeData(style:ElevatedButton.styleFrom(backgroundColor:vino,foregroundColor:Colors.white,minimumSize:const Size.fromHeight(50),shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(14)))),outlinedButtonTheme:OutlinedButtonThemeData(style:OutlinedButton.styleFrom(foregroundColor:vino,minimumSize:const Size.fromHeight(48),shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(14)))),chipTheme:ChipThemeData(shape:RoundedRectangleBorder(borderRadius:BorderRadius.circular(20)))),home:const AccesoApp());}
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AccesoApp extends StatefulWidget {const AccesoApp({super.key});@override State<AccesoApp> createState()=>_AccesoAppState();}
+class _AccesoAppState extends State<AccesoApp>{bool _autenticado=false;@override Widget build(BuildContext context)=>_autenticado?AplicacionPrincipal(onSalir:()=>setState(()=>_autenticado=false)):LoginPage(onEntrar:()=>setState(()=>_autenticado=true));}
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
+class AplicacionPrincipal extends StatefulWidget {final VoidCallback onSalir;const AplicacionPrincipal({super.key,required this.onSalir});@override State<AplicacionPrincipal> createState()=>_AplicacionPrincipalState();}
+class _AplicacionPrincipalState extends State<AplicacionPrincipal>{int _indice=0;Subasta? _seleccionada; final Set<String> _seguidas={'1','3','5'};
+void _abrir(Subasta s)=>setState(()=>_seleccionada=s);
+void _toggleSeguir(Subasta s){setState((){if(_seguidas.contains(s.id)){_seguidas.remove(s.id);}else{_seguidas.add(s.id);}});}
+@override Widget build(BuildContext context){if(_seleccionada!=null)return DetallePage(subasta:_seleccionada!,onVolver:()=>setState(()=>_seleccionada=null),siguiendo:_seguidas.contains(_seleccionada!.id),onToggleSeguir:()=>_toggleSeguir(_seleccionada!));final pages=[InicioPage(onAbrir:_abrir,seguidas:_seguidas,onToggleSeguir:_toggleSeguir),const PublicarPage(),ListaSubastasPage(historial:false,onAbrir:_abrir,seguidas:_seguidas,onToggleSeguir:_toggleSeguir),ListaSubastasPage(historial:true,onAbrir:_abrir,seguidas:_seguidas,onToggleSeguir:_toggleSeguir)];final titles=['Inicio','Publicar','Siguiendo','Historial'];return LayoutBuilder(builder:(context,c){final wide=c.maxWidth>=700;return Scaffold(appBar:AppBar(title:Text(titles[_indice]),actions:[IconButton(tooltip:'Cerrar sesión',onPressed:widget.onSalir,icon:const Icon(Icons.logout))]),body:Row(children:[if(wide)NavigationRail(selectedIndex:_indice,onDestinationSelected:(v)=>setState(()=>_indice=v),labelType:NavigationRailLabelType.all,destinations:const [NavigationRailDestination(icon:Icon(Icons.home_outlined),selectedIcon:Icon(Icons.home),label:Text('Inicio')),NavigationRailDestination(icon:Icon(Icons.add_box_outlined),selectedIcon:Icon(Icons.add_box),label:Text('Publicar')),NavigationRailDestination(icon:Icon(Icons.favorite_outline),selectedIcon:Icon(Icons.favorite),label:Text('Siguiendo')),NavigationRailDestination(icon:Icon(Icons.history),label:Text('Historial'))]),if(wide)const VerticalDivider(width:1),Expanded(child:IndexedStack(index:_indice,children:pages))]),bottomNavigationBar:wide?null:NavigationBar(selectedIndex:_indice,onDestinationSelected:(v)=>setState(()=>_indice=v),destinations:const [NavigationDestination(icon:Icon(Icons.home_outlined),selectedIcon:Icon(Icons.home),label:'Inicio'),NavigationDestination(icon:Icon(Icons.add_box_outlined),label:'Publicar'),NavigationDestination(icon:Icon(Icons.favorite_outline),label:'Siguiendo'),NavigationDestination(icon:Icon(Icons.history),label:'Historial')]),);});}}
