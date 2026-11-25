@@ -6,9 +6,9 @@ class Subasta {
   final double ofertaActual;
   final double ofertaInicial;
   final int ofertas;
-  final String tiempoRestante;
+  final DateTime fechaCierre;
+  final String vendedorId;
   final String categoria;
-  final bool finalizada;
 
   const Subasta({
     required this.id,
@@ -18,16 +18,34 @@ class Subasta {
     required this.ofertaActual,
     required this.ofertaInicial,
     required this.ofertas,
-    required this.tiempoRestante,
+    required this.fechaCierre,
+    required this.vendedorId,
     required this.categoria,
-    this.finalizada = false,
   });
 
-  Subasta copyWith({double? ofertaActual, int? ofertas, bool? finalizada}) => Subasta(
-    id: id, titulo: titulo, descripcion: descripcion, imagen: imagen,
-    ofertaActual: ofertaActual ?? this.ofertaActual,
-    ofertaInicial: ofertaInicial, ofertas: ofertas ?? this.ofertas,
-    tiempoRestante: tiempoRestante, categoria: categoria,
-    finalizada: finalizada ?? this.finalizada,
-  );
+  bool get finalizada => DateTime.now().isAfter(fechaCierre);
+
+  String get tiempoRestante {
+    final resto = fechaCierre.difference(DateTime.now());
+    if (resto.isNegative) return 'Finalizada';
+    if (resto.inDays >= 1) {
+      return '${resto.inDays} día${resto.inDays == 1 ? '' : 's'}';
+    }
+    final h = resto.inHours.toString().padLeft(2, '0');
+    final m = (resto.inMinutes % 60).toString().padLeft(2, '0');
+    return '$h h $m min';
+  }
+
+  Subasta copyWith({double? ofertaActual, int? ofertas}) => Subasta(
+        id: id,
+        titulo: titulo,
+        descripcion: descripcion,
+        imagen: imagen,
+        ofertaActual: ofertaActual ?? this.ofertaActual,
+        ofertaInicial: ofertaInicial,
+        ofertas: ofertas ?? this.ofertas,
+        fechaCierre: fechaCierre,
+        vendedorId: vendedorId,
+        categoria: categoria,
+      );
 }

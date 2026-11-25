@@ -3,7 +3,7 @@ import '../models/subasta.dart';
 
 class DatosPrueba {
   static final List<Subasta> subastas = [
-    const Subasta(
+    Subasta(
       id: '1',
       titulo: 'Cámara fotográfica',
       descripcion:
@@ -12,10 +12,11 @@ class DatosPrueba {
       ofertaActual: 1250,
       ofertaInicial: 900,
       ofertas: 8,
-      tiempoRestante: '02 h 35 min',
+      fechaCierre: DateTime.now().add(const Duration(hours: 2, minutes: 35)),
+      vendedorId: 'u1',
       categoria: 'Tecnología',
     ),
-    const Subasta(
+    Subasta(
       id: '2',
       titulo: 'Bicicleta urbana',
       descripcion:
@@ -24,10 +25,12 @@ class DatosPrueba {
       ofertaActual: 1850,
       ofertaInicial: 1200,
       ofertas: 12,
-      tiempoRestante: '05 h 10 min',
+      fechaCierre: DateTime.now().add(const Duration(hours: 5, minutes: 10)),
+      vendedorId: 'u2',
       categoria: 'Deportes',
     ),
-    const Subasta(
+
+    Subasta(
       id: '3',
       titulo: 'Reloj clásico',
       descripcion:
@@ -36,10 +39,12 @@ class DatosPrueba {
       ofertaActual: 780,
       ofertaInicial: 500,
       ofertas: 5,
-      tiempoRestante: '1 día',
+      fechaCierre: DateTime.now().add(const Duration(days: 1)),
+      vendedorId: 'u3',
       categoria: 'Accesorios',
     ),
-    const Subasta(
+
+    Subasta(
       id: '4',
       titulo: 'Colección de libros',
       descripcion:
@@ -48,10 +53,12 @@ class DatosPrueba {
       ofertaActual: 420,
       ofertaInicial: 250,
       ofertas: 6,
-      tiempoRestante: '08 h 20 min',
+      fechaCierre: DateTime.now().add(const Duration(hours: 8, minutes: 20)),
+      vendedorId: 'u4',
       categoria: 'Libros',
     ),
-    const Subasta(
+
+    Subasta(
       id: '5',
       titulo: 'Guitarra acústica',
       descripcion:
@@ -60,10 +67,12 @@ class DatosPrueba {
       ofertaActual: 2100,
       ofertaInicial: 1500,
       ofertas: 9,
-      tiempoRestante: '03 h 45 min',
+      fechaCierre: DateTime.now().add(const Duration(hours: 3, minutes: 45)),
+      vendedorId: 'u5',
       categoria: 'Música',
     ),
-    const Subasta(
+
+    Subasta(
       id: '6',
       titulo: 'Silla decorativa',
       descripcion:
@@ -72,7 +81,8 @@ class DatosPrueba {
       ofertaActual: 650,
       ofertaInicial: 400,
       ofertas: 3,
-      tiempoRestante: '12 h 00 min',
+      fechaCierre: DateTime.now().add(const Duration(hours: 12)),
+      vendedorId: 'u6',
       categoria: 'Hogar',
     ),
   ];
@@ -80,7 +90,7 @@ class DatosPrueba {
   static final List<String> seguidas = ['1', '3', '5'];
 
   static final List<Subasta> historial = [
-    const Subasta(
+    Subasta(
       id: '7',
       titulo: 'Audífonos inalámbricos',
       descripcion: 'Subasta finalizada. Ganadora: María López.',
@@ -88,9 +98,9 @@ class DatosPrueba {
       ofertaActual: 950,
       ofertaInicial: 400,
       ofertas: 11,
-      tiempoRestante: 'Finalizada',
+      fechaCierre: DateTime.now().subtract(const Duration(days: 2)),
+      vendedorId: 'u1',
       categoria: 'Tecnología',
-      finalizada: true,
     ),
   ];
 }
